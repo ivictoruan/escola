@@ -5,8 +5,8 @@ class Base(models.Model):
     atualizacao = models.DateTimeField(auto_now=True)
     ativo = models.BooleanField(default=True)
 
-    class meta:
-        abstratic = True
+    class Meta:
+        abstract = True
 
 class Curso(Base):
     titulo = models.TextField(max_length=255)
@@ -21,16 +21,17 @@ class Curso(Base):
     
 
 class Avaliacao(Base):
-        curso = models.ForeignKey(Curso, related_name='avaliacoes', on_delete=models.CASCADE)  
+        curso = models.ForeignKey(Curso, related_name='avaliacoes', on_delete=models.CASCADE)
         nome = models.TextField(max_length=255)
         email = models.EmailField(unique=True)
         comentario = models.TextField(default='', blank=True)
-        avaliacao = models.DecimalField(max_digits=2, decimal_places=1)
+        avaliacao = models.DecimalField(max_digits=2, decimal_places=1) 
 
         class Meta:
              verbose_name = 'Avaliação'
-             vebose_name_plural = "Avaliações"
+             verbose_name_plural = "Avaliações"
              unique_together = ['email', 'curso']
         
         def __str__(self):
-             return f'{self.nome} avaliou o curso {self.curso}com nota {self.avaliacao}'
+             return f'{self.nome} avaliou o curso {self.curso} com nota {self.avaliacao}'
+       
