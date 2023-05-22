@@ -9,7 +9,7 @@ class Base(models.Model):
         abstract = True
 
 class Curso(Base):
-    titulo = models.TextField(max_length=255)
+    titulo = models.CharField(max_length=255)
     url = models.URLField(unique=True)
     
     class Meta:
@@ -22,7 +22,7 @@ class Curso(Base):
 
 class Avaliacao(Base):
         curso = models.ForeignKey(Curso, related_name='avaliacoes', on_delete=models.CASCADE)
-        nome = models.TextField(max_length=255)
+        nome = models.CharField(max_length=255)
         email = models.EmailField(unique=True)
         comentario = models.TextField(default='', blank=True)
         avaliacao = models.DecimalField(max_digits=2, decimal_places=1) 
