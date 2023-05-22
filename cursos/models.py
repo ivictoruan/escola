@@ -18,3 +18,19 @@ class Curso(Base):
     
     def __str__(self):
         return self.titulo
+    
+
+class Avaliacao(Base):
+        curso = models.ForeignKey(Curso, related_name='avaliacoes', on_delete=models.CASCADE)  
+        nome = models.TextField(max_length=255)
+        email = models.EmailField(unique=True)
+        comentario = models.TextField(default='', blank=True)
+        avaliacao = models.DecimalField(max_digits=2, decimal_places=1)
+
+        class Meta:
+             verbose_name = 'Avaliação'
+             vebose_name_plural = "Avaliações"
+             unique_together = ['email', 'curso']
+        
+        def __str__(self):
+             return f'{self.nome} avaliou o curso {self.curso}com nota {self.avaliacao}'
