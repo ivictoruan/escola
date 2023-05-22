@@ -10,15 +10,15 @@ Durante o curso, tive a oportunidade de aprender e praticar os conceitos fundame
 
 Ao longo do curso, desenvolvi as seguintes habilidades e competências:
 
-[👍 ]  Compreensão dos conceitos de APIs e sua importância na comunicação entre sistemas.
-[👍 ]  Familiaridade com os princípios do REST (Representational State Transfer) e sua aplicação na criação de APIs.
-[ ] Conhecimento detalhado do Django REST Framework, uma poderosa ferramenta que combina o framework Django e a linguagem Python para criar APIs modernas e eficientes.
-[ ]  Capacidade de criar APIs completas, com suporte para os principais métodos HTTP, como GET, POST, PUT e DELETE.
-[ ]  Utilização de permissões para controlar o acesso e a segurança das APIs.
-[ ]  Implementação de limitação de requisições para evitar abusos e melhorar o desempenho.
-[ ]  Utilização de paginação de dados para lidar com grandes volumes de informações.
-[ ]  Aplicação de autenticação via Token para garantir a segurança das APIs.
-[ ]  Habilidade em testar e validar as APIs, garantindo seu funcionamento adequado.
+- [x] Compreensão dos conceitos de APIs e sua importância na comunicação entre sistemas.
+- [x] Familiaridade com os princípios do REST (Representational State Transfer) e sua aplicação na criação de APIs.
+- [ ] Conhecimento detalhado do Django REST Framework, uma poderosa ferramenta que combina o framework Django e a linguagem Python para criar APIs modernas e eficientes.
+- [ ] Capacidade de criar APIs completas, com suporte para os principais métodos HTTP, como GET, POST, PUT e DELETE.
+- [ ] Utilização de permissões para controlar o acesso e a segurança das APIs.
+- [ ] Implementação de limitação de requisições para evitar abusos e melhorar o desempenho.
+- [ ] Utilização de paginação de dados para lidar com grandes volumes de informações.
+- [ ] Aplicação de autenticação via Token para garantir a segurança das APIs.
+- [ ] Habilidade em testar e validar as APIs, garantindo seu funcionamento adequado.
 
 ## 💼 Por que Contratar-me?
 
