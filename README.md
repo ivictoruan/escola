@@ -26,12 +26,9 @@ Ao concluir o Curso de Django REST Framework, estou preparado para contribuir ef
 
 Estou entusiasmado em aplicar minhas habilidades em um ambiente de trabalho desafiador e colaborativo. Meu comprometimento, vontade de aprender e paixão por programação são atributos que certamente trarei para qualquer equipe de desenvolvimento.
 
-## 📂 Estrutura do Repositório
-
-- `/projeto`: Este diretório contém o projeto prático desenvolvido durante o curso, demonstrando a implementação de APIs modernas com o Django REST Framework.
 
 ## 📝 Contato
 
-Estou aberto a oportunidades de emprego e colaboração em projetos interessantes na área de desenvolvimento. Se você estiver interessado em discutir possíveis oportunidades, sinta-se à vontade para entrar em contato comigo através do seguinte e-mail: [seu-email@example.com](mailto:seu-email@example.com).
+Estou aberto a oportunidades de emprego e colaboração em projetos interessantes na área de desenvolvimento. Se você estiver interessado em discutir possíveis oportunidades, sinta-se à vontade para entrar em contato comigo através do seguinte e-mail: [victorruan135@gmail.com](mailto:victorruan135@gmail.com).
 
 Agradeço pela visita ao meu repositório. Estou ansioso para compartilhar meu conhecimento e contribuir para projetos empolgantes e inovadores. Vamos construir o futuro juntos!
