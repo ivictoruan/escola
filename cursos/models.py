@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Base(models.Model):
     criacao = models.DateTimeField(auto_now_add=True)
@@ -25,7 +26,11 @@ class Avaliacao(Base):
         nome = models.CharField(max_length=255)
         email = models.EmailField(unique=True)
         comentario = models.TextField(default='', blank=True)
-        avaliacao = models.DecimalField(max_digits=2, decimal_places=1) 
+        avaliacao = models.DecimalField(max_digits=2, 
+                                        decimal_places=1, 
+                                        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+                                        verbose_name='Avaliação'
+                                        )
 
         class Meta:
              verbose_name = 'Avaliação'
