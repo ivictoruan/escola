@@ -1,8 +1,17 @@
 from rest_framework import generics
 from rest_framework.generics import get_object_or_404
 
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
+
 from .models import Curso, Avaliacao
 from .serializers import CursoSerializer, AvaliacaoSerializer
+
+"""
+    API versão 1 (ap1/v1/)
+"""
 
 
 class CursosAPIView(generics.ListCreateAPIView):
@@ -39,3 +48,27 @@ class AvaliacaoAPIView(generics.RetrieveUpdateDestroyAPIView):
                 curso_id=self.kwargs.get('curso_pk'),
                 pk=self.kwargs.get('avaliacao_pk'))
         return get_object_or_404(self.get_queryset(), pk=self.kwargs.get('avaliacao_pk'))
+
+
+"""
+    API versão 2 (ap1/v2/)
+"""
+
+
+class CursoViewSet(viewsets.ModelViewSet):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+    lookup_field = 'id'
+
+    @action(detail=True, methods=['get'])
+    def avaliacoes(self, request, pk=None):
+        curso = self.get_object()
+        avaliacoes = curso.avaliacoes.all()
+        serializer = AvaliacaoSerializer(avaliacoes, many=True)
+        return Response(serializer.data)
+
+
+class AvaliacaoViewSet(viewsets.ModelViewSet):
+    queryset = Avaliacao.objects.all()
+    serializer_class = AvaliacaoSerializer
+
