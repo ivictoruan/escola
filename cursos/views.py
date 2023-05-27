@@ -51,19 +51,26 @@ class AvaliacaoAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 """
-    API versão 2 (ap1/v2/)
+    API versão 2 (ap1/v2/...)
 """
 
 
 class CursoViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
-    lookup_field = 'id'
+    # lookup_field = 'id'
 
     @action(detail=True, methods=['get'])
     def avaliacoes(self, request, pk=None):
-        curso = self.get_object()
-        avaliacoes = curso.avaliacoes.all()
+        self.pagination_class.page_size = 2
+        # curso = self.get_object()
+        avaliacoes = Avaliacao.objects.filter(curso_id=pk)
+        page = self.paginate_queryset(avaliacoes)
+
+        if page is not None: # faz paginação
+            serializer = AvaliacaoSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data) 
+
         serializer = AvaliacaoSerializer(avaliacoes, many=True)
         return Response(serializer.data)
 
