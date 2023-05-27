@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+
 class Base(models.Model):
     criacao = models.DateTimeField(auto_now_add=True)
     atualizacao = models.DateTimeField(auto_now=True)
@@ -9,34 +10,38 @@ class Base(models.Model):
     class Meta:
         abstract = True
 
+
 class Curso(Base):
     titulo = models.CharField(max_length=255)
     url = models.URLField(unique=True)
-    
+
     class Meta:
         verbose_name = 'Curso'
         verbose_name_plural = 'Cursos'
-    
+        ordering = ['-ativo', '-atualizacao']  # ['at ivo', 'atualizacao']
+
     def __str__(self):
         return self.titulo
-    
+
 
 class Avaliacao(Base):
-        curso = models.ForeignKey(Curso, related_name='avaliacoes', on_delete=models.CASCADE)
-        nome = models.CharField(max_length=255)
-        email = models.EmailField(unique=True)
-        comentario = models.TextField(default='', blank=True)
-        avaliacao = models.DecimalField(max_digits=2, 
-                                        decimal_places=1, 
-                                        validators=[MinValueValidator(1), MaxValueValidator(5)], 
-                                        verbose_name='Avaliação'
-                                        )
+    curso = models.ForeignKey(
+        Curso, related_name='avaliacoes', on_delete=models.CASCADE)
+    nome = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    comentario = models.TextField(default='', blank=True)
+    avaliacao = models.DecimalField(max_digits=2,
+                                    decimal_places=1,
+                                    validators=[MinValueValidator(
+                                        1), MaxValueValidator(5)],
+                                    verbose_name='Avaliação'
+                                    )
 
-        class Meta:
-             verbose_name = 'Avaliação'
-             verbose_name_plural = "Avaliações"
-             unique_together = ['email', 'curso']
-        
-        def __str__(self):
-             return f'{self.nome} avaliou o curso {self.curso} com nota {self.avaliacao}'
-       
+    class Meta:
+        verbose_name = 'Avaliação'
+        verbose_name_plural = "Avaliações"
+        unique_together = ['email', 'curso']
+        ordering = ['-ativo', '-atualizacao']
+
+    def __str__(self):
+        return f'{self.nome} avaliou o curso {self.curso} com nota {self.avaliacao}'
