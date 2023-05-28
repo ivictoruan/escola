@@ -4,10 +4,11 @@ from rest_framework.generics import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import permissions
 
 from .models import Curso, Avaliacao
 from .serializers import CursoSerializer, AvaliacaoSerializer
+from .permissions import EhSuperUser
 
 """
     API versão 1 (ap1/v1/)
@@ -29,7 +30,6 @@ class AvaliacoesAPIView(generics.ListCreateAPIView):
     serializer_class = AvaliacaoSerializer
 
     def get_queryset(self):
-        # print(self.queryset)
         if self.kwargs.get('curso_pk'):  # se tiver "curso_pk" na URI
             # avaliacoes relacionadas ao curso
             return self.queryset.filter(curso_id=self.kwargs.get('curso_pk'))
@@ -58,24 +58,28 @@ class AvaliacaoAPIView(generics.RetrieveUpdateDestroyAPIView):
 class CursoViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
-    # lookup_field = 'id'
+    permission_classes = (
+        EhSuperUser,
+        permissions.DjangoModelPermissions,)
 
     @action(detail=True, methods=['get'])
-    def avaliacoes(self, request, pk=None):
+    def avaliacoes(self, request, pk=None):  # .../avaliacoes/ <- A FUNÇÃO FORMA ESTA URL!
         self.pagination_class.page_size = 2
-        # curso = self.get_object()
+        # [BUSCA AVALIAÇÕES] que tem como Primary Key
         avaliacoes = Avaliacao.objects.filter(curso_id=pk)
+        # faz paginação das avaliações
         page = self.paginate_queryset(avaliacoes)
 
-        if page is not None: # faz paginação
-            serializer = AvaliacaoSerializer(page, many=True)
-            return self.get_paginated_response(serializer.data) 
+        if page is not None:
+            serializer = AvaliacaoSerializer(
+                page, many=True)  # SERIALIZAÇÃO da página
+            # RESPONDE com a página serializada
+            return self.get_paginated_response(serializer.data)
 
         serializer = AvaliacaoSerializer(avaliacoes, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data)  # Responde sem a página
 
 
 class AvaliacaoViewSet(viewsets.ModelViewSet):
     queryset = Avaliacao.objects.all()
     serializer_class = AvaliacaoSerializer
-
