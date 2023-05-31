@@ -18,7 +18,7 @@ Ao longo do curso, desenvolvi as seguintes habilidades e competências:
 - [x] Implementação de limitação de requisições para evitar abusos e melhorar o desempenho.
 - [x] Utilização de paginação de dados para lidar com grandes volumes de informações.
 - [x] Aplicação de autenticação via Token para garantir a segurança das APIs.
-- [ ] Habilidade em testar e validar as APIs, garantindo seu funcionamento adequado.
+- [x] Habilidade em testar e validar as APIs, garantindo seu funcionamento adequado.
 
 ## 💼 Por que Contratar-me?
 
