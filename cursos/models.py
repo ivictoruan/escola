@@ -20,7 +20,7 @@ class Curso(Base):
         ordering = ['-ativo', '-atualizacao']  # ['at ivo', 'atualizacao']
 
     def __str__(self):
-        return self.titulo
+        return f"{self.id}-{self.titulo}"
 
 
 class Avaliacao(Base):
